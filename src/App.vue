@@ -1,68 +1,40 @@
 <template>
   <div id="app">
     <Header />
-    <AddTodo v-on:add-todo="AddTodo" />
-    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Header from "./components/layout/Header";
-import Todos from "./components/Todos";
-import AddTodo from "./components/AddTodo";
-
+import Header from './components/layout/Header';
 export default {
-  name: "app",
+  name:"app",
   components: {
-    Header,
-    Todos,
-    AddTodo,
-  },
-  data() {
-    return {
-      todos: [
-        {
-          id: 1,
-          title: "Todo One",
-          completed: false,
-        },
-        {
-          id: 2,
-          title: "Todo Two",
-          completed: true,
-        },
-        {
-          id: 3,
-          title: "Todo Three",
-          completed: true,
-        },
-      ],
-    };
-  },
-  methods: {
-    deleteTodo(id) {
-      this.todos = this.todos.filter((todo) => todo.id != id);
-    },
-    AddTodo(newTodo) {
-      this.todos = [...this.todos, newTodo];
-      }
-  },
-};
+    Header
+  }
+}
 </script>
 
+
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.4;
+#nav {
+  padding: 30px;
 }
 
-button {
-  background: #666;
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
